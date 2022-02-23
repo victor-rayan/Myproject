@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Question
+from .models import Choice, Question
 
 # Create your views here.
 
@@ -28,3 +28,8 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results',args=(question.id,)))        
+
+def answers(request):
+    listquestion = Question.objects.order_by('-pub_date')[:5]
+    listchoices = Choice.objects.all()
+    return render(request,'polls/answers.html',{'listquestion':listquestion, 'listchoices':listchoices})

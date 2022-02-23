@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Poll</title>
+
+</head>
+<body>
+
+
+    <ul>
+        {% for question in listchoices %} 
+            
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush" >
+       
+              <a>{{ question.choice_text }}</a>
+            </ul>
+          </div>
+        
+          
+        {% endfor %}
+        -------------------------
+    </ul>
+
+
+</body>
+</html>
+{% endblock %}
