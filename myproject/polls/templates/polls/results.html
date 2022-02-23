@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado Enquete</title>
+
+</head>
+<body >
+<center>
+    <h1>{{ question.question_text }}</h1>
+
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush" >
+                {{ choice.choice_text }} - {{ choice.votes }} voto{{ choice.votes|pluralize }}
+            </ul>
+          </div>
+    {% endfor %}
+    </ul>
+
+ 
+ <a class="btn btn-primary" href="{% url 'polls:vote' question.id %}" role="button">Votar novamente</a>
+ <a class="btn btn-primary" href="{% url 'polls:index' %}" role="button">Ver outra votação</a>
+</center>
+</body>
+
+
+
+</html>
+{% endblock %}
